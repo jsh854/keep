@@ -26,6 +26,8 @@ const TodoSaveModal = ({ show, close }) => {
 const clearFormFields=()=>{
   setTitle();
   setDescription();
+  setTodoDate();
+  close()
 }
 
 //save the form to the global state 
@@ -37,18 +39,21 @@ const clearFormFields=()=>{
       dispatch(saveNote(data));
       setValidated(false);
       clearFormFields();
-      close();
     }
   };
+
+
 //change input states
   const changeDateInput=(e)=>setTodoDate(e.target.value)
   const changeTitleInput=(e)=> setTitle(e.target.value)
   const changeDescriptionInput=(e)=>setDescription(e.target.value)
+
+  
   return (
     <>
       <Modal
         show={show}
-        onHide={close}
+        onHide={clearFormFields}
         backdrop={true}
         centered
         size="md"
